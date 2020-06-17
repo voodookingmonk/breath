@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Raimo Pregel">
+	<meta name="description" content="App to assist you in breathing with selectable timers">
+	<meta name="theme-color" content="#ff9848"/>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" href="style.css">
@@ -12,32 +15,36 @@
 <body>
 	<header>
 		<div class="center">
-			<div class="logo">
-				<img src="images/lotus.svg" alt="Breath logo" class="logo__image">
-				<span class="logo__text">Breath</span>
+			<div class="logo--section">
+				<img src="images/lotus.svg" alt="Breath logo" class="logo--image">
+				<span class="logo--text">Breath</span>
 			</div>
 			<section class="timer">
 				<div>
-					<span>Breath: </span><input type="number" name="timer" id="timer" min="1" value="5"><span>seconds</span>
+					<label for="timer">Breath: </label><input type="number" name="timer" id="timer" min="1" value="5"><span>seconds</span>
 				</div>
 				<div>
-					<span>Pause: </span><input type="number" name="pause" id="pause" min="0" value="2"><span>seconds</span>
+					<label for="pause">Pause: </label><input type="number" name="pause" id="pause" min="0" value="2"><span>seconds</span>
 				</div>
 			</section>
 		</div>
 	</header>
-	<main class="container center fullheight">
-		<section class="content center">
-			<div class="box center">
-				<div class="innerbox"></div>
-			</div>
-			<p id="text" class="text">Click on this circle to start</p>
-		</section>
+	<main>
+		<div class="center">
+			<section id="circle">
+				<div class="circle center">
+					<div class="circle--inner"></div>
+				</div>
+				<p id="text" class="text">Click on this circle to start</p>
+			</section>
+		</div>
 	</main>
 	<footer>
-		Made by Raimo 2020<br>
-		Icons made by <a target="_blank" href="https://www.flaticon.com/free-icon/lotus_2675704?term=lotus&page=3&position=21" title="Good Ware">Good Ware</a> from <a target="_blank" href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>
-		Photo by <a target="_blank" href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Lukasz Szmigiel">Lukasz Szmigiel</a> on <a target="_blank" href="https://unsplash.com/s/photos/trees-serenity?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Trees Serenity">Unsplash</a>
+		<div class="footer--center">
+			Made by <a rel="noopener" target="_blank" href="https://github.com/raimop/" title="Raimo's GitHub page">Raimo</a> 2020<br>
+			Icons made by <a rel="noopener" target="_blank" href="https://www.flaticon.com/free-icon/lotus_2675704?term=lotus&page=3&position=21" title="Good Ware">Good Ware</a> from <a rel="noopener" target="_blank" href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>
+			Photo by <a rel="noopener" target="_blank" href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Lukasz Szmigiel">Lukasz Szmigiel</a> on <a rel="noopener" target="_blank" href="https://unsplash.com/s/photos/trees-serenity?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Trees Serenity">Unsplash</a>
+	</div>
 	</footer>
 </body>
 </html>

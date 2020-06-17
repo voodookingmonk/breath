@@ -1,6 +1,6 @@
 const messages = {
   initial: "Click on this<br/>circle to start",
-  stop: "Stopped.<br/>Click again to start over",
+  stop: "Stopped.<br/>Press ESC to exit fullscreen.<br/>Click again to start over.",
   breathIn: "Breath in",
   breathOut: "Breath out",
   holdBreath: "Hold breath"
@@ -8,9 +8,14 @@ const messages = {
 
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
-const content = document.querySelector(".content");
-const box = document.querySelector(".box");
+const circleWrapper = document.querySelector("#circle");
+const body = document.querySelector("body");
+const circle = document.querySelector(".circle");
 const text = document.querySelector("#text");
+const timeouts = {
+  hold: null,
+  out: null
+}
 let interval = null;
 let time = null;
 let pause = null;
@@ -21,7 +26,7 @@ let storagePause = localStorage.getItem("breath-pause");
 if (storageTimer) document.querySelector("#timer").value = storageTimer;
 if (storagePause) document.querySelector("#pause").value = storagePause;
 
-content.addEventListener("click", () => { 
+circleWrapper.addEventListener("click", () => { 
   toggleElementVisiblity(header);
   toggleElementVisiblity(footer);
   interval ? stop() : start(); 
@@ -29,10 +34,11 @@ content.addEventListener("click", () => {
 
 const start = () => {
   updateTime();
-  box.style.transition = `all ${time}ms linear`;
+  circle.style.transition = `all ${time}ms linear`;
 
   const timeCombined = time * 2 + pause;
 
+  fullscreen.open();
   interval = setInterval((() => {
     breathing();
     return breathing; 
@@ -40,11 +46,17 @@ const start = () => {
 }
 
 const stop = () => {
-  box.style.transition = `none`;
-  clearTimeout(interval);
-  interval = null;
+  circle.style.transition = `none`;
+
   text.innerHTML = messages.stop;
-  if (box.classList.contains("grow")) box.classList.remove("grow");
+  if (circle.classList.contains("grow")) circle.classList.remove("grow");
+
+  clearInterval(interval);
+  interval = null;
+  clearTimeout(timeouts.hold);
+  timeouts.hold = null;
+  clearTimeout(timeouts.out);
+  timeouts.out = null;
 }
 
 const updateTime = () => {
@@ -74,15 +86,41 @@ const toggleElementVisiblity = (element) => {
 }
 
 const breathing = () => {
-  box.classList.add("grow");
+  circle.classList.add("grow");
   text.innerHTML = messages.breathIn;
 
-  setTimeout(() => {
+  timeouts.hold = setTimeout(() => {
     if (pause) text.innerHTML = messages.holdBreath;
 
-    setTimeout(() => {
-      box.classList.remove("grow");
+    timeouts.out = setTimeout(() => {
+      circle.classList.remove("grow");
       text.innerHTML = messages.breathOut;
     }, pause)
   }, time)
+}
+
+const fullscreen = {
+  open: () => {
+    const docElm = document.documentElement;
+    if (docElm.requestFullscreen) {
+      docElm.requestFullscreen();
+    } else if (docElm.mozRequestFullScreen) { /* Firefox */
+      docElm.mozRequestFullScreen();
+    } else if (docElm.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+      docElm.webkitRequestFullscreen();
+    } else if (docElm.msRequestFullscreen) { /* IE/Edge */
+      docElm.msRequestFullscreen();
+    }
+  },
+  close: () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+      document.msExitFullscreen();
+    }
+  }
 }
