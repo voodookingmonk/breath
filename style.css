@@ -76,6 +76,11 @@ a {
   opacity: 0.5;
 }
 
+.timer div {
+  display: inline block;
+  text-align: right;
+}
+
 .text {
   position: absolute;
   color: white;
