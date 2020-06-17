@@ -12,6 +12,7 @@ const circleWrapper = document.querySelector("#circle");
 const body = document.querySelector("body");
 const circle = document.querySelector(".circle");
 const text = document.querySelector("#text");
+const enterFullScreen = document.querySelector("#enter-fullscreen");
 const timeouts = {
   hold: null,
   out: null
@@ -23,8 +24,10 @@ let pause = null;
 text.innerHTML = messages.initial;
 let storageTimer = localStorage.getItem("breath-timer");
 let storagePause = localStorage.getItem("breath-pause");
+let storageFullScreen = localStorage.getItem("breath-fullscreen");
 if (storageTimer) document.querySelector("#timer").value = storageTimer;
 if (storagePause) document.querySelector("#pause").value = storagePause;
+if (storageFullScreen) storageFullScreen == "true" ? enterFullScreen.checked = true : enterFullScreen.checked = false;
 
 circleWrapper.addEventListener("click", () => { 
   toggleElementVisiblity(header);
@@ -34,11 +37,10 @@ circleWrapper.addEventListener("click", () => {
 
 const start = () => {
   updateTime();
-  circle.style.transition = `all ${time}ms linear`;
 
   const timeCombined = time * 2 + pause;
 
-  fullscreen.open();
+  if (enterFullScreen.checked) fullscreen.open();
   interval = setInterval((() => {
     breathing();
     return breathing; 
@@ -46,7 +48,7 @@ const start = () => {
 }
 
 const stop = () => {
-  circle.style.transition = `none`;
+  circle.style = "";
 
   text.innerHTML = messages.stop;
   if (circle.classList.contains("grow")) circle.classList.remove("grow");
@@ -62,6 +64,7 @@ const stop = () => {
 const updateTime = () => {
   time = timeHelper("#timer");
   pause = timeHelper("#pause");
+  localStorage.setItem(`breath-fullscreen`, enterFullScreen.checked);
 }
 
 const timeHelper = (id, variable) => {
@@ -87,6 +90,7 @@ const toggleElementVisiblity = (element) => {
 
 const breathing = () => {
   circle.classList.add("grow");
+  circle.style.animation = `grow ${time}ms linear forwards`;
   text.innerHTML = messages.breathIn;
 
   timeouts.hold = setTimeout(() => {
@@ -94,6 +98,7 @@ const breathing = () => {
 
     timeouts.out = setTimeout(() => {
       circle.classList.remove("grow");
+      circle.style.animation = `shrink ${time}ms linear forwards`;
       text.innerHTML = messages.breathOut;
     }, pause)
   }, time)
