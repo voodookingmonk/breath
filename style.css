@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.6;
+  color: white;
+}
+
+body {
+  height: 100vh;
+  background: url("images/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo__image {
+  width: 75px;
+  margin-right: 5px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.fullheight {
+  height: 100%;
+}
+
+.content {
+  position: relative;
+}
+
+.box {
+  width: 60vw;
+  height: 60vw;
+  background: transparent;
+  border: 20px white solid;
+  border-radius: 50%;
+  position: relative;
+  transition: scale 1ms linear;
+  transform: scale(1);
+}
+
+.innerbox {
+  position: absolute;
+  width: 100%; 
+  height: 100%;
+  background: black;
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.text {
+  position: absolute;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  text-align: center;
+}
+
+.grow {
+  transform: scale(1.35);
+}
+
+input[type="number"]{
+  padding: .5em 1em;
+  border: none;
+  background: #000000AA;
+  color: white;
+  border-radius: 20px;
+  width: 40px;
+}
+
+header {
+  position: absolute;
+  height: 100px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 20px;
+  transition: opacity 1s linear;
+}
+
+footer {
+  position: absolute;
+  font-size: 0.8rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  transition: opacity 1s linear;
+}
+
+.hide-element {
+  opacity: 0;
+}
+
+@media screen and (min-width: 700px){
+  .center {
+    width: 80vw;
+  }
+
+  .logo__text {
+    margin-left: 20px;
+  }
+
+  .box {
+      width: 400px;
+      height: 400px;
+  }
+
+  .text {
+      font-size: 1.25rem;
+  }
+}
