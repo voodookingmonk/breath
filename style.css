@@ -109,6 +109,7 @@ header {
   background: rgba(0, 0, 0, 0.5);
   padding-top: 20px;
   transition: opacity 1s linear;
+  z-index: 2;
 }
 
 footer {
@@ -141,5 +142,11 @@ footer {
 
   .text {
       font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-height: 500px){
+  footer {
+    display: none;
   }
 }
