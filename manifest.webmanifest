@@ -1,0 +1,22 @@
+{
+	"name": "Breath",
+	"short_name": "Breath",
+	"start_url": "/index.html",
+	"description": "An app to assist you in breathing",
+	"display": "fullscreen",
+	"background_color": "#245619",
+	"theme_color": "#245619",
+	"orientation": "portrait-primary",
+	"icons": [
+		{
+			"src": "/images/breath-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/images/breath-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

@@ -3,51 +3,81 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="/manifest.webmanifest">
 	<meta name="author" content="Raimo Pregel">
-	<meta name="description" content="App to assist you in breathing with selectable timers">
+	<meta name="description" content="An app to assist you in breathing">
 	<meta name="theme-color" content="#245619"/>
+	<link rel="apple-touch-icon" href="/images/breath-192.png">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" href="style.css">
 	<title>Breath</title>
 	<script src="index.js" defer></script>
 </head>
-<body>
+<body class="bg img-0">
+	<audio src="music/Serenity_fesliyanstudios.com_David_Renda.mp3" loop></audio>
 	<header>
-		<div class="center">
+		<div class="header--container">
 			<div class="logo--section">
 				<img src="images/lotus.svg" alt="Breath logo" class="logo--image">
 				<span class="logo--text">Breath</span>
 			</div>
-			<section class="timer">
-				<div>
-					<label for="timer">Breath: </label><input type="number" name="timer" id="timer" min="1" value="5"><span>seconds</span>
-				</div>
-				<div>
-					<label for="pause">Pause: </label><input type="number" name="pause" id="pause" min="0" value="2"><span>seconds</span>
-				</div>
-				<div>
-					<input type="checkbox" name="enter-fullscreen" id="enter-fullscreen"><label for="enter-fullscreen">Enter fullscreen?</label>
-				</div>
-			</section>
+			<span id="settings--icon" class="settings--icon">⚙️</span>
 		</div>
 	</header>
+	<section id="overlay" class="overlay">
+		<div id="overlay--content" class="overlay--content">
+			<form id="settings-form" class="settings-form" onsubmit="event.preventDefault();">
+				<div>
+						<label for="breath-in">Breath in: </label><input type="number" name="breath-in" id="breath-in" min="1" value="3"><span>s</span><br>
+						<input type="checkbox" name="breath-lock" id="breath-lock" checked><label for="breath-lock">Lock?</label><br>
+						<label for="breath-out">Breath out: </label><input type="number" name="breath-out" id="breath-out" min="1" value="3"><span>s</span>
+				</div>
+				<div>
+						<label for="hold-between">Hold in between: </label><input type="number" name="hold-between" id="hold-between" min="0" value="2"><span>s</span><br>
+						<input type="checkbox" name="hold-lock" id="hold-lock"><label for="hold-lock">Lock?</label><br>
+						<label for="hold-end">Hold after breathing out: </label><input type="number" name="hold-end" id="hold-end" min="0" value="0"><span>s</span>
+				</div>
+				<div>
+					<input type="checkbox" name="time-remaining" id="time-remaining"><label for="time-remaining">Show time remaining?</label>
+				</div>
+				<div>
+					<input type="checkbox" name="enter-fullscreen" id="enter-fullscreen" checked><label for="enter-fullscreen">Enter fullscreen?</label>
+				</div>
+				<div>
+					<input type="checkbox" name="audio" id="audio" checked><label class="audio" for="audio">Audio?</label>
+				</div>
+				<div>
+					<button class="add-button">Add to home screen</button>
+				</div>
+				<div class="credit">
+					Made by <a rel="noopener" target="_blank" href="https://github.com/raimop/" title="Raimo's GitHub page">Raimo</a> 2020<br>
+					Icon made by <a rel="noopener" target="_blank" href="https://www.flaticon.com/free-icon/lotus_2675704?term=lotus&page=3&position=21" title="Good Ware">Good Ware</a> from <a rel="noopener" target="_blank" href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>
+					Photo by <a rel="noopener" target="_blank" href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Lukasz Szmigiel">Lukasz Szmigiel</a> on <a rel="noopener" target="_blank" href="https://unsplash.com/s/photos/trees-serenity?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Trees Serenity">Unsplash</a><br>
+					Fesliyan Studios music <a rel="noopener" target="_blank" href="https://www.fesliyanstudios.com" title="Fesliyan Studios">https://www.fesliyanstudios.com</a>
+				</div>
+			</form>
+		</div>
+	</section>
 	<main>
-		<div class="center">
 			<section id="circle">
 				<div class="circle center">
 					<div class="circle--inner"></div>
 				</div>
-				<p id="text" class="text">Click on this circle to start</p>
+				<p id="text" class="text">Click on<br/> this circle <br/> to start</p>
 			</section>
-		</div>
 	</main>
 	<footer>
-		<div class="footer--center">
+		<div class="footer--container">
 			Made by <a rel="noopener" target="_blank" href="https://github.com/raimop/" title="Raimo's GitHub page">Raimo</a> 2020<br>
-			Icons made by <a rel="noopener" target="_blank" href="https://www.flaticon.com/free-icon/lotus_2675704?term=lotus&page=3&position=21" title="Good Ware">Good Ware</a> from <a rel="noopener" target="_blank" href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>
-			Photo by <a rel="noopener" target="_blank" href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Lukasz Szmigiel">Lukasz Szmigiel</a> on <a rel="noopener" target="_blank" href="https://unsplash.com/s/photos/trees-serenity?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" title="Trees Serenity">Unsplash</a>
 	</div>
 	</footer>
+	<script>
+		if('serviceWorker' in navigator){
+			navigator.serviceWorker.register('sw.js')
+					.then(reg => console.log('service worker registered'))
+					.catch(err => console.log('service worker not registered', err));
+		}
+	</script>
 </body>
 </html>
