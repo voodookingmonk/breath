@@ -1,5 +1,5 @@
-# Breathing App
+# Breath
 
-An app to assist you in breathing
+Try: https://voodookingmonk.github.io/breath/
 
-by Raimo Pregel [github.com/raimop](https://github.com/raimopew/)
+<sub>by Voodookingmonk</sub>
